@@ -17,6 +17,7 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -69,7 +70,6 @@ public class TelaClientes extends javax.swing.JFrame {
 
         jLabel5.setText("Pesquisar");
 
-        txtPesquisa.setText("jTextField1");
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
