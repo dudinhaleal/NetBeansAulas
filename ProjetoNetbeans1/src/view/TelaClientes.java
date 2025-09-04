@@ -6,6 +6,7 @@ package view;
 
 import dao.ClienteDAO;
 import model.Cliente;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,9 +21,31 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
+        // ... código para salvar o cliente ...
+
+
         setLocationRelativeTo(null);
     }
-
+    
+    public void carregarTabela() {
+    // Pega o modelo da tabela que foi definido na interface gráfica
+    DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+    // Limpa a tabela para evitar duplicidade de dados ao recarregar
+    modelo.setNumRows(0);
+ 
+    ClienteDAO clienteDAO = new ClienteDAO();
+ 
+    // Pega a lista de clientes do banco de dados
+    for (Cliente c : clienteDAO.listar()) {
+        // Adiciona uma nova linha na tabela para cada cliente da lista
+        modelo.addRow(new Object[]{
+            c.getId(),
+            c.getNome(),
+            c.getEmail(),
+            c.getTelefone()
+        });
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,6 +220,7 @@ public class TelaClientes extends javax.swing.JFrame {
             txtEmail.setText("");
             txtTelefone.setText("");
 
+        carregarTabela(); // << ADICIONE ESTA LINHA
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
