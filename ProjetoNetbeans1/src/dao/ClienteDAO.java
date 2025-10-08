@@ -37,7 +37,7 @@ public class ClienteDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    public List<Cliente> listar() {
+    public List<Cliente> read () {
     Connection con = ConnectionFactory.getConnection();
     PreparedStatement stmt = null;
     ResultSet rs = null;
